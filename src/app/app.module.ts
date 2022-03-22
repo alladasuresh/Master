@@ -2,6 +2,7 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 
@@ -50,7 +51,8 @@ import { CommonModule } from '@angular/common';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    CommonModule
+    CommonModule,
+    
 
 
     

@@ -27,6 +27,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import {LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VmDetailsComponent } from './components/vm-details/vm-details.component';
+
 
 const routes: Routes = [
   {
@@ -64,7 +66,8 @@ const routes: Routes = [
       {path:"user-detail",component:UserDetailComponent},
       {path:"change-password",component:ChangePasswordComponent},
       {path:"add-user",component:AddUserComponent},
-      {path:"login",component:LoginComponent}
+      {path:"login",component:LoginComponent},
+      {path:"vm-details",component:VmDetailsComponent}
     ]
   },
 

@@ -3,43 +3,46 @@
     <div class="card-body">
       <h4 class="mb-32">View / Delete User</h4>
       <button mat-button class="mb-16 btn btn-info fw-normal" (click)="onEdit()">Edit User</button>
-      <form>
+      <form [formGroup]="userService.form">
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Name</mat-label>
-          <input matInput type="text" value="User" placeholder="Enter user's name" disabled>
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" value="User" placeholder="Enter user's name" formControlName="name" readonly>
         </mat-form-field>
+
+        
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Personal Email</mat-label>
-          <input matInput type="email" placeholder="Enter user's personal email" value="someone@gmail.com" disabled>
+          <input matInput type="email" placeholder="Enter user's personal email"  formControlName="email" readonly>
         </mat-form-field>
+        
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Birth Date (DOB)</mat-label>
-            <input matInput type="date" placeholder="Date of Birth" disabled value="01-03-1901">
+            <input matInput type="date" placeholder="Date of Birth"  formControlName="dob" readonly>
           </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Joining Date (DOJ)</mat-label>
-            <input matInput disabled type="date" placeholder="Date of Joining" value="07-03-2021">
+            <input matInput  type="date" placeholder="Date of Joining" formControlName="doj" readonly>
           </mat-form-field>
           
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>User ID</mat-label>
-            <input matInput type="text" disabled placeholder="User ID" value="SB004V1">
+            <input matInput type="text" disabled placeholder="User ID" value="SB004V1" readonly>
           </mat-form-field>
 
           <mat-form-field class="w-100 fs-16" appearance="outline">
               <mat-label>User Designation</mat-label>
-              <input matInput type="text" disabled placeholder="User Role / Designation" value="Software Engineer">
+              <input matInput type="text" disabled placeholder="User Role / Designation" value="Software Engineer" >
             </mat-form-field>
 
           <section class="fs-16">
             <!-- <mat-checkbox color="primary" [checked]="checked" (change)="onCheck()" class="d-block mb-16">Generate Company Email</mat-checkbox> -->
             <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Company Email Format</mat-label>
-                <input matInput type="text" disabled placeholder="Enter Company Email Format" value="user@softblobs.com">
+                <input matInput type="uid" disabled placeholder="Enter Company Email Format" value="user@softblobs.com">
               </mat-form-field>
           </section>
   

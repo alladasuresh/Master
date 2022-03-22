@@ -1,35 +1,48 @@
 import { Injectable } from '@angular/core';
-
 import { filter, from, map, Observable, of, switchMap } from 'rxjs';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { ProfileUser } from 'src/app/models/user-profile';
 import * as auth from 'firebase/auth';
+import{AngularFireList,AngularFireDatabase} from '@angular/fire/compat/database'
+import {  
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,ReactiveFormsModule ,
+  Validators,
+  ValidatorFn,
+  FormBuilder
+} from '@angular/forms';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  userData: any; 
-  userlist:any=[]
-  constructor(public afs: AngularFirestore, // Inject Firestore service
+  
+  
+  
+  constructor(public afs: AngularFirestore,  // Inject Firestore service
   public afAuth: AngularFireAuth, // Inject Firebase auth service
-  public router: Router,) { 
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
-      } else {
-        localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
-      }
-    });  
-  }
+  public router: Router,
+  public afd:AngularFireDatabase) {}
+  userList: AngularFireList<any> | undefined;
+  form = new FormGroup({
+    id:new FormControl(''),
+    photoURL:new FormControl(''),
+      email:new FormControl(''),
+      
+     // lastName:new FormControl(''),
+     // email:new FormControl(''),      
+      doj:new FormControl(''),
+      dob:new FormControl(''),     
+     name:new FormControl(''),
+     uid :new FormControl(''),
+     
+
+    });
    
   getAllUsers() {
    return  this.afs.collection('users').snapshotChanges().pipe(
@@ -42,16 +55,23 @@ export class UserService {
           return { id,email, ...data };
         })
         )
-      )
-    
+      )   
   }
 
-
-  updateUser(user: ProfileUser){
-    
-    return this.afs.doc('/users'+user.uid).update(user)
-                  
+  populateForm(user:any){
+    this.form.setValue(user);
+  }
+  getUsers(){
+    this.userList=this.afd.list('users');
+    return this.userList.snapshotChanges();
   }
 
-  
+  updateUser(uid:any,value:any){
+    //console.log(this.afs.doc('/users'+user.uid).snapshotChanges())
+    return this.afs.collection('users').doc(uid).set(value);                
+  }
+
+  deleteUser(uid:any){
+    return this.afs.collection('users').doc(uid).delete();
+  }   
 }

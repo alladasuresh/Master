@@ -9,6 +9,7 @@ import {from,Observable, of, switchMap} from 'rxjs'
 
 import { AngularFireDatabase, AngularFireList  } from '@angular/fire/compat/database'
 import { getDatabase ,ref,query, orderByChild} from "firebase/database";
+import { timeStamp } from 'console';
 
 //import {FirebaseListObservable} from '@angular/fire/compat/database'
 
@@ -17,9 +18,10 @@ import { getDatabase ,ref,query, orderByChild} from "firebase/database";
 })
 export class AuthenticationService {
   //currentUser$ = authState(this.auth);
+  
   userData: any;
   user: Observable<ProfileUser| undefined |null>;
-  name:any;
+  firstName?:any;
   doj?:any;
   dob?:any;
   photoURL?:any;
@@ -35,6 +37,7 @@ export class AuthenticationService {
   address: any;
 
   userpostList:AngularFireList<ProfileUser>;
+  error="";
    
 
 
@@ -66,16 +69,18 @@ export class AuthenticationService {
 
   
   
-  signUp(email:string,password:string,name:string,doj:string,dob:string,photoURL:string){
+  signUp(email:string,password:string,firstName:string,lastName:string,doj:string,dob:string,photoURL:string,role:string){
     return (this.afAuth.createUserWithEmailAndPassword(email, password))
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
         this.password=password;
-        this.name=name;
+        this.firstName=firstName;
+        this.lastName=lastName;
         this.doj=doj;
         this.dob=dob;
         this.photoURL=photoURL;
+        this.role=role;
        // this.emailVerified=this.emailVerified
         
         this.SendVerificationMail();
@@ -106,10 +111,11 @@ export class AuthenticationService {
       const userData: ProfileUser = {
         uid: user.uid,
         email: user.email,
-        name:this.name,
+        firstName:this.firstName,
         doj:this.doj,
         dob:this.dob,
         photoURL:this.photoURL,
+        role:this.role,
         //emailVerified:this.emailVerified
         //password:this.password,
         
@@ -125,33 +131,8 @@ export class AuthenticationService {
 
     login(email: string, password: string) {
       
-     return  this.afAuth.signInWithEmailAndPassword(email, password).then(
-       (result)=>{
-         console.log(result.user?.emailVerified)
-         console.log(email)
-         
-        if (result.user?.emailVerified !==true) {
-          
-          if (result.user?.emailVerified === false){
-            window.alert(
-              'Please validate your email address. Kindly check your inbox.');
-          }
-          else{
-            window.alert("please give valied crediantials")
-          }
-         
-        }
-        else{
-         
-        if(email =='wabocim123@tonaeto.com')
-        {this.router.navigate(['/dashboard']); }
-        else
-        this.router.navigate(['/dashboard']);
-        }
-     
-     
-        
-      })}
+      return this.afAuth.signInWithEmailAndPassword(email, password)
+     }
     
     get isLoggedIn(): boolean {
       const user = JSON.parse(localStorage.getItem('user')!);

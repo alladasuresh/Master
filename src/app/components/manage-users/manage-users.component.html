@@ -52,7 +52,7 @@
             <th mat-header-cell *matHeaderCellDef>Details</th>
             <td mat-cell *matCellDef="let element">
               <!-- <p class="mb-0 fw-medium">{{element.id}}</p> -->
-              <button mat-raised-button class="me-1 mb-1" (click)="onView()" color="primary">View</button>
+              <button mat-raised-button class="me-1 mb-1" (click)="onView(element.id)" color="primary">View</button>
             </td>
           </ng-container>
   

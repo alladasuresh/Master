@@ -4,48 +4,90 @@
       <h4 class="mb-32">Add / View User</h4>
       <form [formGroup]="signUpForm"  (ngSubmit)="submit()">
         <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Name</mat-label>
-          <input matInput type="text" value="" placeholder="Enter user's name" formControlName="name">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" value="" placeholder="Enter user's FirstName"  formControlName="name"/>
+          <mat-error *ngIf="firstName?.errors?.['required']">
+            FirstName is required
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" value="" placeholder="Enter user's LastName" formControlName="lastName">
         </mat-form-field>
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Personal Email</mat-label>
-          <input matInput type="email" placeholder="Enter user's personal email" formControlName="email">
+          <input matInput type="email" placeholder="Enter user's personal email" formControlName="email"/>
+          <mat-error *ngIf="email?.errors?.['required']">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="email?.errors?.['email']">
+            Please enter a valid email address
+          </mat-error>
         </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Birth Date (DOB)</mat-label>
-            <input matInput type="date" placeholder="Date of Birth" formControlName="dob">
+            <input matInput type="date" placeholder="Date of Birth" formControlName="dob"/>
           </mat-form-field>
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>Joining Date (DOJ)</mat-label>
-            <input matInput type="date" placeholder="Date of Joining" formControlName="doj">
+            <input matInput type="date" placeholder="Date of Joining" formControlName="doj"/>
+            <mat-error *ngIf="doj?.errors?.['required']">
+              DOJ is required
+            </mat-error>
           </mat-form-field>
           
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>User ID</mat-label>
-            <input matInput type="text" disabled placeholder="User ID" value="SB004V1">
+            <input matInput type="text" disabled placeholder="User ID" value="SB004V1"/>
           </mat-form-field>
-  
-        <mat-form-field class="w-100 fs-16" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput type="text" placeholder="Enter password" formControlName="password">
-        </mat-form-field>
-        
-        <mat-form-field class="w-100 fs-16" appearance="outline">
-            <mat-label>Confirm Password</mat-label>
-            <input matInput type="password" placeholder="Confirm password">
-          </mat-form-field>
-          
-          <div role="alert" class="alert alert-danger alert-text-danger align-items-center d-flex fs-14 mb-16 rounded ng-star-inserted"><i-feather _nghost-dto-c11="" class="feather-base me-12 text-danger" ng-reflect-name="alert-circle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-alert-circle">
-            <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg></i-feather> Password must be Alpha numeric, can also use special characters </div>
 
+        <div>
+          <mat-form-field class="w-100 fs-16" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput  placeholder="Password" formControlName="password" />
+            
+            <mat-error *ngIf="password?.errors?.['required']">
+               Password is required 
+            </mat-error>
+            <mat-error *ngIf="password?.errors?.['minlength']">
+              Password must be at least 8 characters long.
+           </mat-error>
+           </mat-form-field>
+
+           <mat-form-field class="w-100 fs-16" appearance="outline">
+            <mat-label>ConfirmPassword</mat-label>
+           <input
+             matInput
+             type="password"
+             placeholder="Confirm Password"
+             formControlName="confirmPassword"
+           />    
+           <mat-error *ngIf="confirmPassword?.errors?.['required']">
+             Confirm Password is required
+           </mat-error>
+           </mat-form-field>
+           <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">
+             Passwords should match
+           </mat-error>
+        </div>
+          
           <mat-form-field class="w-100 fs-16" appearance="outline">
               <mat-label>User Designation</mat-label>
-              <input matInput type="text" placeholder="User Role / Designation" value="Software Engineer">
-            </mat-form-field>
+             <!-- <input matInput type="text" placeholder="User Role / Designation" value="Software Engineer"> -->
+              <mat-select formControlName="role" placeholder="Role of Employee" >
+                <ng-container *ngFor="let role of roles">
+                  <mat-option value="{{role.id}}">{{role.value}}</mat-option>
+                </ng-container>
+              </mat-select>
+              <mat-error *ngIf="role?.errors?.['required']">
+                  Role is required
+                </mat-error>
+          </mat-form-field>
 
           <section class="fs-16">
             <mat-checkbox color="primary" [checked]="checked" (change)="onCheck()" class="d-block mb-16">Generate Company Email</mat-checkbox>

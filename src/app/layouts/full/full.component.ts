@@ -50,6 +50,11 @@ export class FullComponent {
       icon: "layout",
       menu: "Calendar",
     },
+    {
+      link: "/vm-details",
+      icon: "layout",
+      menu: "Manage VMs",
+    },
     // {
     //   link: "/button",
     //   icon: "disc",

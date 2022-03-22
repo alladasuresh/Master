@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import {from,Observable, of, switchMap} from 'rxjs'
+import { ProfileUser } from 'src/app/models/user-profile';
 //import { HotToastService } from '@ngneat/hot-toast';public 
 
 @Component({
@@ -16,6 +18,8 @@ export class LoginComponent implements OnInit {
     email:new FormControl('',[Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required]),
   })
+  error="";
+  user: Observable<ProfileUser> | undefined;
   constructor(private authService: AuthenticationService,private router: Router,) { }
 
   ngOnInit(): void {}
@@ -33,22 +37,33 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    this.error="";
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       this.authService.login(this.loginForm.value.email,this.loginForm.value.password).
       
-      then(value => {
-        //    window.alert(value);
-        //    console.log(value);
-        //    window.alert("successfully logedin");
-        //    console.log('Nice, it worked!');
-        // if(this.loginForm.value.email =='Admin@email.com')
-        // {this.router.navigate(['/dashboard']); }
-        // else
-        // this.router.navigate(['/dashboard']);
-        })
+      then(result => {
+
+        if (result.user?.emailVerified !==true) {
+          
+          if (result.user?.emailVerified === false){
+            this.error="Please validate your email address. Kindly check your inbox.";
+            
+          }
+          else{
+            window.alert("please give valid credentials")
+          }
+        }
+        else{
+          if(this.loginForm.value.email =='wabocim123@tonaeto.com')
+        {this.router.navigate(['/dashboard']); }
+        else
+        this.router.navigate(['/dashboard']);
+        }       
+        })  
       .catch(err => {
-         console.log('Something went wrong: ', err.message);
+        this.error="please give valid credentials";
+       
        });
      }
   }
