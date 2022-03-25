@@ -34,7 +34,7 @@ export class ManageUsersComponent implements OnInit {
   constructor(private _router: Router,public firestore:AngularFirestore,private userService:UserService ) { }
 
   ngOnInit(): void {    
-   //  this.getAllUser();
+    this.getAllUser();
         
   }
 
