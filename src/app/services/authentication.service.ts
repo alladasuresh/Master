@@ -10,6 +10,9 @@ import {from,Observable, of, switchMap} from 'rxjs'
 import { AngularFireDatabase, AngularFireList  } from '@angular/fire/compat/database'
 import { getDatabase ,ref,query, orderByChild} from "firebase/database";
 import { Console, timeStamp } from 'console';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import{ init } from '@emailjs/browser';
+init("CJY_uHzLjfzpR6lC6");
 
 //import {FirebaseListObservable} from '@angular/fire/compat/database'
 
@@ -17,7 +20,7 @@ import { Console, timeStamp } from 'console';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  //currentUser$ = authState(this.auth);
+  currentUser:any;
   
   userData: any;
   user: Observable<ProfileUser| undefined |null>;
@@ -83,7 +86,8 @@ export class AuthenticationService {
         this.role=role;
        // this.emailVerified=this.emailVerified
         
-        this.SendVerificationMail();
+       this.SendPasswordEmail(email,firstName,lastName,password);
+        //this.SendVerificationMail();
          this.SetUserData(result.user);
       // })
       // .catch((error) => {
@@ -99,6 +103,22 @@ export class AuthenticationService {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification());
     }
+
+    SendPasswordEmail(email: string,firstName: string,lastName : string,password:string){
+      var templateParams = {
+        name: firstName + " " + lastName,
+        to_mail: email,
+        userpassword: password       
+    };
+     
+    emailjs.send('service_62hd31e', 'template_softblobs_mail', templateParams)
+        .then(function(response) {
+           console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+           console.log('FAILED...', error);
+        });      
+    }
+
   SetUserData(user: any) {
     console.log(user)
       const userRef: AngularFirestoreDocument<any> = this.afs.doc(

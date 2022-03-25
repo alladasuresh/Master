@@ -71,10 +71,12 @@ export class VmDetailsComponent implements OnInit {
     this.getusers();
   }
 
-  onBack(): void {
-
+  createVM():void{
     this.vmservice.createvm(this.vmForm.value);
+    this.panelOpenState = false;
+  }
 
+  onBack(): void {
     this._router.navigate(['/flexy/home']);
   }
 
@@ -116,17 +118,11 @@ export class VmDetailsComponent implements OnInit {
       this.customerArrayU=this.datasocU.data;
   })
   }
-  // //vm pop up
-  // onCreate(){
-  //  this.dialog.open(AddVmComponent)
-  // }
-
-  // updatevmtouser(){
     
-  //   this.userservice.updateDoc(this.vmformupdate.value.userid,this.vmformupdate.value.firstName)
-  //   return;}
-    
-  
+  updatevmtouser() {
+      this.userservice.updateVMDetails(this.vmformupdate.value.userid,this.vmformupdate.value.firstName);     
+     return;
+    }
 }
 
 

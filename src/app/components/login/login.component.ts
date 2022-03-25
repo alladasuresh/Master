@@ -6,7 +6,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 import {from,Observable, of, switchMap} from 'rxjs'
 import { ProfileUser } from 'src/app/models/user-profile';
-//import { HotToastService } from '@ngneat/hot-toast';public 
+//import { HotToastService } from '@ngneat/hot-toast';public
+import { UserService } from 'src/app/services/user.service'; 
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   })
   error="";
   user: Observable<ProfileUser> | undefined;
-  constructor(private authService: AuthenticationService,private router: Router,) { }
+  constructor(public authService: AuthenticationService,private router: Router,
+    public userService:UserService) { }
 
   ngOnInit(): void {}
 
@@ -44,26 +46,43 @@ export class LoginComponent implements OnInit {
       
     .   then(result => {
 
-        if (result.user?.emailVerified !==true) {
-          
-          if (result.user?.emailVerified === false){
-            this.error="Please validate your email address. Kindly check your inbox.";
-            
-          }
-          else{
-            window.alert("please give valid credentials")
+      this.userService.getAllUsers().subscribe(res=>{
+        // this.dataSourceone=res;
+        // this.datasoc =new MatTableDataSource(this.dataSourceone);
+        for(var i=0;i<res.length;i++)
+        {
+          if(result.user?.uid == res[i].uid)
+          {
+            this.userService.selectedUser = res[i];
+            //this.userName = this.selectedUser.displayName;
+            break;
           }
         }
-        else{
-          if(this.loginForm.value.email =='wabocim123@tonaeto.com')
-        {this.router.navigate(['/dashboard']); }
-        else
-        this.router.navigate(['/dashboard']);
-        }       
-        })  
-      .catch(err => {
-        this.error="please give valid credentials";
-       
+      //this.authService.currentUser = result.user;
+      // if (result.user?.emailVerified !==true) {
+        
+      //   if (result.user?.emailVerified === false){
+      //     this.error="Please validate your email address. Kindly check your inbox.";
+          
+      //   }
+      //   else{
+      //     window.alert("please give valid credentials")
+      //   }
+      // }
+      // else
+      // {
+        console.log(result.user);
+        if(this.loginForm.value.email =='wabocim123@tonaeto.com')
+      {this.router.navigate(['/dashboard']); }
+      else
+      this.router.navigate(['/dashboard']);
+      }       
+      //}
+      )  
+    // .catch(err => {
+    //   this.error="please give valid credentials";
+     
+    //  });
        });
      }
     }}

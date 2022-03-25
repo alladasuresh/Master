@@ -44,22 +44,18 @@ export class ManageUsersComponent implements OnInit {
   }
 
   onView(id:any): void{
-    console.log("we gotthi"+id);
-    for(var user of this.datasoc.data){
-     // console.log(user.id)
-    if (user.id===id){
-      console.log(user)
-    this.userService.populateForm(user);
-    console.log("testing566")
-    //this.userService.form.setValue(this.user)
-    //console.log(this.userService.populateForm(user.id));
-    this._router.navigate(['/user-detail']);
-    break;
-    }
-    }
-     
     
-      
+    this.userService.getAllUsers().subscribe(res=>{
+      for(var i=0;i<res.length;i++)
+      {
+        if(id == res[i].uid)
+        {
+          this.userService.editSelectedUser = res[i];
+          this._router.navigate(['/user-detail']);
+          break;
+        }
+      }
+    });
   }
   
   onAddUser(): void{

@@ -112,7 +112,7 @@
                 </mat-radio-group>
                 
           
-                <button mat-button class="btn btn-info fw-normal" (click)="onBack()"  [disabled]="vmForm.invalid" type="submit">Submit</button>
+                <button mat-button class="btn btn-info fw-normal" (click)="createVM()"  [disabled]="vmForm.invalid" type="submit">Submit</button>
         
               </form>
 
@@ -164,7 +164,7 @@
                 <mat-label>Comments</mat-label>
                 <textarea matInput rows="6" placeholder="Enter Instructions" value="Login using regular RDP"></textarea>
               </mat-form-field>
-              <button mat-button class="btn btn-info fw-normal"  >Submit</button>
+              <button mat-button class="btn btn-info fw-normal" (click)="updatevmtouser()" >Submit</button>
         </form>
             </mat-expansion-panel>
           </mat-accordion>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProfileUser } from 'src/app/models/user-profile';
 import {  
   AbstractControl,
@@ -22,6 +23,7 @@ export class UserDetailComponent implements OnInit {
 
   checked = true;  
   hide = true;
+  selectedUserID = this.userService.editSelectedUser != null ? this.userService.editSelectedUser.uid : 0;
   
   constructor(private _router: Router,public userService:UserService) { }
   formControls=this.userService.form.controls;
@@ -46,4 +48,8 @@ export class UserDetailComponent implements OnInit {
     this.userService.updateUser
   }
   
+  deleteUser(){
+    this.userService.deleteUser(this.selectedUserID);
+    this._router.navigate(['/manage-users']);
+  }
 }

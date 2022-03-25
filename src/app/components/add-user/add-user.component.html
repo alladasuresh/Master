@@ -130,7 +130,7 @@
             />
             </mat-label>  
             <br/>          
-        
+            <div *ngIf="fb != null"><img [src]="fb" style="border: 3px solid black;border-radius:6px;height: 20%; width:20%"></div>
         </section>
   
         <button mat-button class="btn btn-info fw-normal" type="submit">Submit</button>
