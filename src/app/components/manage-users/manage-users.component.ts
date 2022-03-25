@@ -34,7 +34,7 @@ export class ManageUsersComponent implements OnInit {
   constructor(private _router: Router,public firestore:AngularFirestore,private userService:UserService ) { }
 
   ngOnInit(): void {    
-     this.getAllUser();
+   //  this.getAllUser();
         
   }
 
@@ -46,7 +46,7 @@ export class ManageUsersComponent implements OnInit {
   onView(id:any): void{
     console.log("we gotthi"+id);
     for(var user of this.datasoc.data){
-      console.log(user.id)
+     // console.log(user.id)
     if (user.id===id){
       console.log(user)
     this.userService.populateForm(user);

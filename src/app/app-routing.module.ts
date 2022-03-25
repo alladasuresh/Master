@@ -28,6 +28,8 @@ import {LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VmDetailsComponent } from './components/vm-details/vm-details.component';
+import { AddVmComponent } from './components/add-vm/add-vm.component';
+
 
 
 const routes: Routes = [
@@ -67,7 +69,8 @@ const routes: Routes = [
       {path:"change-password",component:ChangePasswordComponent},
       {path:"add-user",component:AddUserComponent},
       {path:"login",component:LoginComponent},
-      {path:"vm-details",component:VmDetailsComponent}
+      {path:"vm-details",component:VmDetailsComponent},
+      {path:"add-vm",component:AddVmComponent}
     ]
   },
 

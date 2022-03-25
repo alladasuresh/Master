@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ProfileUser } from 'src/app/models/user-profile';
 
 interface sidebarMenu {
   link: string;
@@ -24,8 +26,9 @@ export class FullComponent {
       map(result => result.matches),
       shareReplay()
     );
-
-  constructor(private _router: Router, private breakpointObserver: BreakpointObserver) { }
+    user$ = this.afAuth.user;
+  constructor(private _router: Router, private breakpointObserver: BreakpointObserver,public afAuth: AngularFireAuth, ) { }
+  
 
   routerActive: string = "activelink";
 

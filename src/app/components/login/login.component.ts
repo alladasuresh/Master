@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
     this.error="";
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      this.authService.login(this.loginForm.value.email,this.loginForm.value.password).
+      this.authService.login(this.loginForm.value.email,this.loginForm.value.password)
       
-      then(result => {
+    .   then(result => {
 
         if (result.user?.emailVerified !==true) {
           
@@ -66,5 +66,4 @@ export class LoginComponent implements OnInit {
        
        });
      }
-  }
-}
+    }}

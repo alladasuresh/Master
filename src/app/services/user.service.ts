@@ -17,6 +17,10 @@ import {
 } from '@angular/forms';
 
 
+
+import { AuthenticationService } from './authentication.service';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,10 +28,17 @@ export class UserService {
   
   
   
+
   constructor(public afs: AngularFirestore,  // Inject Firestore service
   public afAuth: AngularFireAuth, // Inject Firebase auth service
   public router: Router,
-  public afd:AngularFireDatabase) {}
+  public afd:AngularFireDatabase,public authService:AuthenticationService) {}
+  //
+  
+  user$ = this.afAuth.user;
+  
+
+
   userList: AngularFireList<any> | undefined;
   form = new FormGroup({
     id:new FormControl(''),
@@ -38,8 +49,9 @@ export class UserService {
      // email:new FormControl(''),      
       doj:new FormControl(''),
       dob:new FormControl(''),     
-     name:new FormControl(''),
+     firstName:new FormControl(''),
      uid :new FormControl(''),
+     role  :new FormControl(''),
      
 
     });
@@ -73,5 +85,14 @@ export class UserService {
 
   deleteUser(uid:any){
     return this.afs.collection('users').doc(uid).delete();
-  }   
+  } 
+  //  -- vm related method --
+  // updateDoc(_id: string, _value: string) {
+  //   let doc = this.afs.collection('users', ref => ref.where('uid', '==', _id));
+  //   doc.snapshotChanges().subscribe((res: any) => {
+  //     let id = res[0].payload.doc.id;      
+  //     this.afs.collection('users').doc(id).update({vmid: _value});
+  //     return;
+  //   });
+  // }
 }

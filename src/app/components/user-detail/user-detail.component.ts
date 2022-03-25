@@ -26,6 +26,7 @@ export class UserDetailComponent implements OnInit {
   constructor(private _router: Router,public userService:UserService) { }
   formControls=this.userService.form.controls;
   ngOnInit(): void {
+    
   }
 
   onBack(): void {

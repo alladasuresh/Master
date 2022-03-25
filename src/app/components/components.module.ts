@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { VmDetailsComponent } from './vm-details/vm-details.component';
+import { AddVmComponent } from './add-vm/add-vm.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { VmDetailsComponent } from './vm-details/vm-details.component';
     AddUserComponent,
     LoginComponent,
     VmDetailsComponent,
+    AddVmComponent,
   ],
   imports: [
     CommonModule,

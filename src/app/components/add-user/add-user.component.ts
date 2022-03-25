@@ -46,12 +46,13 @@ export class AddUserComponent implements OnInit {
   downloadURL:Observable<string> | undefined;
   checked = true;  
   hide = true;
+  
 
 
   
   signUpForm = new FormGroup({
       
-      name:new FormControl('',Validators.required),
+      firstName:new FormControl('',Validators.required),
       lastName:new FormControl(''),
       email:new FormControl('', [Validators.email,Validators.required]),
       password: new FormControl('',[ Validators.required,Validators.minLength(8)]),
@@ -76,7 +77,9 @@ export class AddUserComponent implements OnInit {
 
                  ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   get firstName(){
     return this.signUpForm.get('name');
@@ -85,11 +88,30 @@ export class AddUserComponent implements OnInit {
     return this.signUpForm.get('email');
   }
   get password(){
-    return this.signUpForm.get('password');
+    var numberChars = "0123456789";
+    var upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var lowerChars = "abcdefghijklmnopqrstuvwxyz";
+    var allChars = numberChars + upperChars + lowerChars;
+    var randPasswordArray = Array(8);
+    randPasswordArray[0] = numberChars;
+    randPasswordArray[1] = upperChars;
+    randPasswordArray[2] = lowerChars;
+    randPasswordArray = randPasswordArray.fill(allChars, 3);
+    var arraypassword=randPasswordArray.map(function(x) { return x[Math.floor(Math.random() * x.length)] });
+    for (var i = arraypassword.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = arraypassword[i];
+      arraypassword[i] = arraypassword[j];
+      arraypassword[j] = temp;
+    }
+   return arraypassword.join('');
+    
+     
   }
-  get confirmPassword(){
-    return this.signUpForm.get('confirmPassword');
-  }
+  // get confirmPassword(){
+  //   //return this.signUpForm.get('confirmPassword');
+  //   return this.passwordUser;
+  // }
   get doj(){
     return this.signUpForm.get('doj');
    }
@@ -97,7 +119,8 @@ export class AddUserComponent implements OnInit {
     return this.signUpForm.get('role');
    }
 
-
+   
+  
   onBack(): void {
     this._router.navigate(['/flexy/home']);
   }
@@ -133,10 +156,10 @@ export class AddUserComponent implements OnInit {
       });
 
     }
-
+    
     submit(){                
-      
-      this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password,this.signUpForm.value.name,
+      console.log(this.password);
+      this.authService.signUp(this.signUpForm.value.email, this.password,this.signUpForm.value.firstName,
         this.signUpForm.value.lastName,this.signUpForm.value.doj, this.signUpForm.value.dob,this.signUpForm.value.photoURL,this.signUpForm.value.role)                                 
     }  
 

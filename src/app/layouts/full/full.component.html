@@ -40,11 +40,11 @@
       <button mat-icon-button class="ms-4 me-4" (click)="search=!search">
         <i-feather name="search" class="mt-n3 text-light-muted feather-base text-dark"></i-feather>
       </button>
-      <div class="ms-auto">
+      <div class="ms-auto" *ngIf="user$ | async as user">
         <button mat-button class="fs-16 pt-4 pb-4 ps-8 pe-8 text-light-muted" [matMenuTriggerFor]="menu">
           <img src="assets/images/user2.webp" class="rounded-circle" alt="">
           <span class="fw-light ms-8 text-secondary">Hi,</span>
-          <span class="fw-bold ms-8">User</span>
+          <span class="fw-bold ms-8">{{user.email}}!</span>
           <i-feather name="chevron-down" class="feather-base mt-n2"></i-feather>
         </button>
         <mat-menu #menu="matMenu" class="profile-dropdown">

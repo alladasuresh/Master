@@ -9,7 +9,7 @@ import {from,Observable, of, switchMap} from 'rxjs'
 
 import { AngularFireDatabase, AngularFireList  } from '@angular/fire/compat/database'
 import { getDatabase ,ref,query, orderByChild} from "firebase/database";
-import { timeStamp } from 'console';
+import { Console, timeStamp } from 'console';
 
 //import {FirebaseListObservable} from '@angular/fire/compat/database'
 
@@ -53,7 +53,7 @@ export class AuthenticationService {
     this.user = this.afAuth.authState.pipe(switchMap(user => {
       
       if(user){
-        
+          console.log("lkop"+user)
           this.userData = user;
           localStorage.setItem('user', JSON.stringify(this.userData));
          // JSON.parse(localStorage.getItem('user'));
@@ -97,10 +97,7 @@ export class AuthenticationService {
   }
   SendVerificationMail() {
     return this.afAuth.currentUser
-      .then((u: any) => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['verify-email-address']);
-      });
+      .then((u: any) => u.sendEmailVerification());
     }
   SetUserData(user: any) {
     console.log(user)
@@ -131,7 +128,8 @@ export class AuthenticationService {
 
     login(email: string, password: string) {
       
-      return this.afAuth.signInWithEmailAndPassword(email, password)
+      return this.afAuth.signInWithEmailAndPassword(email, password);
+      
      }
     
     get isLoggedIn(): boolean {
