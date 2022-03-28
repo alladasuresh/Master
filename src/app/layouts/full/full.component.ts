@@ -23,6 +23,7 @@ export class FullComponent {
 
   search: boolean = false;
   selectedUser:any;
+  userIcon:string = "";
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -36,6 +37,7 @@ export class FullComponent {
       debugger
       this.userName = this.userService.selectedUser?.firstName;
       this.sidebarMenu = this.userService.selectedUser?.role == "1" ? this.adminSideBarMenu : this.userSideBarMenu;
+      this.userIcon = this.userService.selectedUser?.photoURL ? this.userService.selectedUser?.photoURL : "assets/images/user2.webp";
     }
   
 
