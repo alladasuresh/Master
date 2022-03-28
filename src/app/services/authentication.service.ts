@@ -77,6 +77,7 @@ export class AuthenticationService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
+        console.log(password)
         this.password=password;
         this.firstName=firstName;
         this.lastName=lastName;
@@ -129,6 +130,7 @@ export class AuthenticationService {
         uid: user.uid,
         email: user.email,
         firstName:this.firstName,
+        lastName:this.lastName,
         doj:this.doj,
         dob:this.dob,
         photoURL:this.photoURL,

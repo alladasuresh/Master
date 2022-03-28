@@ -59,7 +59,7 @@ export class AddUserComponent implements OnInit {
       confirmPassword: new FormControl('', Validators.required),
       doj:new FormControl('', Validators.required),
       dob:new FormControl(''),
-      photoURL: new FormControl(''),
+      //photoURL: new FormControl(''),
       role:new FormControl('', Validators.required),
     },
       { validators: passwordsMatchValidator()}
@@ -82,7 +82,7 @@ export class AddUserComponent implements OnInit {
   }
 
   get firstName(){
-    return this.signUpForm.get('name');
+    return this.signUpForm.get('firstName');
    }
   get email(){
     return this.signUpForm.get('email');
@@ -117,6 +117,9 @@ export class AddUserComponent implements OnInit {
    }
    get role(){
     return this.signUpForm.get('role');
+   }
+   get photoURL(){
+     return this.fb;
    }
 
    
@@ -158,9 +161,9 @@ export class AddUserComponent implements OnInit {
     }
     
     submit(){                
-      console.log(this.password);
+      
       this.authService.signUp(this.signUpForm.value.email, this.password,this.signUpForm.value.firstName,
-        this.signUpForm.value.lastName,this.signUpForm.value.doj, this.signUpForm.value.dob,this.signUpForm.value.photoURL,this.signUpForm.value.role)                                 
+        this.signUpForm.value.lastName,this.signUpForm.value.doj, this.signUpForm.value.dob,this.photoURL,this.signUpForm.value.role)                                 
     }  
 
     
