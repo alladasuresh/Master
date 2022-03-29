@@ -8,7 +8,7 @@ import { filter, from, map, Observable, of, switchMap } from 'rxjs';
 })
 export class VirtualmachineService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(public firestore: AngularFirestore) { }
 
 
   getvms() {
@@ -17,9 +17,9 @@ export class VirtualmachineService {
         actions.map(a => {
           const data = a.payload.doc.data() as Vminfo;
           const id = a.payload.doc.id;
-          const vmid=a.payload.doc.get("vmid")
+          //const vmid=a.payload.doc.get("vmid")
 
-          return { id, ...data };
+          return { id,...data };
         })
         )
       )   
@@ -27,5 +27,24 @@ export class VirtualmachineService {
 
   createvm(vm: Vminfo){
     return this.firestore.collection('vms').add(vm);
-}
+  }
+
+
+  //-- vm related method --
+  // ******   Do not remove if condition -- it loops infinite times ********
+  assignvmtoUser(_id: string, _value: string) {    
+    
+    
+    let i=1;
+    let doc = this.firestore.collection('vms', ref => ref.where('vmid', '==', _id));
+    doc.snapshotChanges().subscribe((res: any) => { 
+      console.log(res)     
+    if (i===1){
+      let id = res[0].payload.doc.id;     
+      this.firestore.collection('vms').doc(id).update({vmtype:_value});
+      i++;
+      return;
+    }
+    });
+   }
 }
