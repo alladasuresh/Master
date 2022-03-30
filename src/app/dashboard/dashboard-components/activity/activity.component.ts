@@ -21,28 +21,23 @@ export class ActivityComponent implements OnInit {
     {
       time: "09.50",
       ringColor: "ring-success",
-      message: "Meeting with John",
+      message: "New ticket on ATF",
     },
     {
       time: "09.46",
       ringColor: "ring-primary",
-      message: "Payment received from John Doe of $385.90",
+      message: "Assign team updates",
     },
     {
       time: "09.47",
       ringColor: "ring-info",
-      message: "Project Meeting",
+      message: "Remove calendar from website",
     },
     {
       time: "09.48",
       ringColor: "ring-warning",
-      message: "New Sale recorded #ML-3467",
-    },
-    {
-      time: "09.49",
-      ringColor: "ring-danger",
-      message: "Payment was made of $64.95 to Michael Anderson",
-    },
+      message: "Update Timesheet",
+    }
   ]
   
 }

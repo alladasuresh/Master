@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 //Add Changes
 import {
@@ -83,12 +84,13 @@ export class CalendarComponent implements OnInit {
 
   viewDate: Date = new Date();
 
+  isAdmin:boolean = this.userService.selectedUser?.role == "1" ? true : false;
   // modalData: {
   //   action: string;
   //   event: CalendarEvent;
   // };
 
-  actions: CalendarEventAction[] = [
+  adminActions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
       a11yLabel: 'Edit',
@@ -105,6 +107,9 @@ export class CalendarComponent implements OnInit {
       },
     },
   ];
+  userActions: CalendarEventAction[] = [];
+
+  actions =this.userService.selectedUser?.role == "1" ? this.adminActions : this.userActions;
 
   refresh = new Subject<void>();
 
@@ -226,7 +231,7 @@ export class CalendarComponent implements OnInit {
   //End
 
 
-  constructor(private _router: Router,) { }
+  constructor(private _router: Router,public userService:UserService) { }
 
   ngOnInit(): void {}
 

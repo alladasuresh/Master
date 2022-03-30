@@ -24,6 +24,7 @@ export class UserDetailComponent implements OnInit {
   checked = true;  
   hide = true;
   selectedUserID = this.userService.editSelectedUser != null ? this.userService.editSelectedUser.uid : 0;
+  photoURL = this.userService.editSelectedUser.photoURL;
   
   constructor(private _router: Router,public userService:UserService) { }
   formControls=this.userService.form.controls;

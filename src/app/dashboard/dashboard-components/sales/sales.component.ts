@@ -28,12 +28,12 @@ export class SalesComponent implements OnInit {
 
     this.series = [
       {
-        name: 'Ample Admin',
+        name: 'Backlog Tickets',
         data: [355, 390, 300, 350, 390, 180, 355, 390, 300, 350, 390, 180],
         color: "#fb9678",
       },
       {
-        name: 'Pixel Admin',
+        name: 'Completed Tickets',
         data: [280, 250, 325, 215, 250, 310, 280, 250, 325, 215, 250, 310],
         color: "#03c9d7",
       },
