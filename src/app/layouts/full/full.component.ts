@@ -55,11 +55,6 @@ export class FullComponent {
       menu: "Manage Users",
     },
     {
-      link: "/manage-permissions",
-      icon: "layout",
-      menu: "Permissions",
-    },
-    {
       link: "/calendar",
       icon: "layout",
       menu: "Calendar",
