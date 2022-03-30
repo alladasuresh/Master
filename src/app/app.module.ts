@@ -15,7 +15,6 @@ import { DemoFlexyModule } from './demo-flexy-module'
 // Modules
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ComponentsModule } from './components/components.module';
-
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -25,13 +24,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import {AngularFireStorageReference,AngularFireUploadTask,BUCKET} from "@angular/fire/compat/storage";
 import { CommonModule } from '@angular/common';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     FullComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
@@ -42,21 +38,16 @@ import { CommonModule } from '@angular/common';
     DashboardModule,
     ComponentsModule,
     FormsModule,
-    ReactiveFormsModule,
-    
-
+    ReactiveFormsModule,  
     AngularFireModule.initializeApp(environment.firebase,"cloud"),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    CommonModule
-
-
-    
+    CommonModule,
   ],
   providers: [{ provide: BUCKET, useValue: environment.firebase.storageBucket }],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], 
 })
 export class AppModule { }
