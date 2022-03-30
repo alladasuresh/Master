@@ -43,6 +43,7 @@ export class VmDetailsComponent implements OnInit {
   });
   checked = true;  
   hide = true;
+  error="";
   
   displayedColumns: string[] = ['id', 'name', 'isActive', 'user', 'delete'];
   
@@ -74,8 +75,10 @@ export class VmDetailsComponent implements OnInit {
   }
 
   createVM():void{
+    this.error="";
     this.vmservice.createvm(this.vmForm.value);
     this.panelOpenState = false;
+    this.error="submitted"
   }
 
   onBack(): void {

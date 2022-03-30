@@ -20,16 +20,21 @@ import {
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-
+  
   checked = true;  
   hide = true;
   selectedUserID = this.userService.editSelectedUser != null ? this.userService.editSelectedUser.uid : 0;
   
   constructor(private _router: Router,public userService:UserService) { }
   formControls=this.userService.form.controls;
+
   ngOnInit(): void {
     
   }
+  
+  
+  
+
 
   onBack(): void {
     this._router.navigate(['/flexy/home']);
@@ -51,5 +56,8 @@ export class UserDetailComponent implements OnInit {
   deleteUser(){
     this.userService.deleteUser(this.selectedUserID);
     this._router.navigate(['/manage-users']);
+  }
+  updateeditUser(){
+    
   }
 }
