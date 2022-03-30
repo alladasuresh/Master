@@ -48,9 +48,11 @@ export class ManageUsersComponent implements OnInit {
     this.userService.getAllUsers().subscribe(res=>{
       for(var i=0;i<res.length;i++)
       {
+        
         if(id == res[i].uid)
         {
           this.userService.editSelectedUser = res[i];
+          this.userService.populateForm(res[i]);
           this._router.navigate(['/user-detail']);
           break;
         }

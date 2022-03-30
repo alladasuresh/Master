@@ -30,6 +30,8 @@ export class VmDetailsComponent implements OnInit {
     vmtype: new FormControl('', ),
     
     
+    
+    
   }
   );
 
@@ -37,7 +39,7 @@ export class VmDetailsComponent implements OnInit {
       
     
     firstName:new FormControl(''),
-    userid:new FormControl("")
+    userid:new FormControl('')
   });
   checked = true;  
   hide = true;
@@ -104,7 +106,7 @@ export class VmDetailsComponent implements OnInit {
       this.vmservice.getvms().subscribe(res=>{
       this.dataSourceone=res;
       this.datasoc =new MatTableDataSource(this.dataSourceone);
-      
+      console.log(this.datasoc.data);
       this.customerArray=this.datasoc.data;
     })
   }  
@@ -118,11 +120,22 @@ export class VmDetailsComponent implements OnInit {
       this.customerArrayU=this.datasocU.data;
   })
   }
+
+
+  assignvmtoUser(){
     
-  updatevmtouser() {
-      this.userservice.updateVMDetails(this.vmformupdate.value.userid,this.vmformupdate.value.firstName);     
-     return;
-    }
+    this.vmservice.assignvmtoUser(this.vmformupdate.value.userid,this.vmformupdate.value.firstName);
+    return;
+  }
+    
+  // updatevmtouser() {
+  //     this.userservice.updateVMDetails(this.vmformupdate.value.userid,this.vmformupdate.value.firstName);     
+  //    return;
+  //   }
+
+
+
+
 }
 
 

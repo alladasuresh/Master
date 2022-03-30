@@ -92,16 +92,16 @@ export class UserService {
   
   //-- vm related method --
   // ******   Do not remove if condition -- it loops infinite times ********
-   updateVMDetails(_id: string, _value: string) {
-    let i=1;
-    let doc = this.afs.collection('users', ref => ref.where('uid', '==', _id));
-    doc.snapshotChanges().subscribe((res: any) => {      
-    if (i===1){
-      let id = res[0].payload.doc.id;      
-      this.afs.collection('users').doc(id).update({vmid: _value});
-      i++;
-      return;
-    }
-    });
-   }
+  //  updateVMDetails(_id: string, _value: string) {
+  //   let i=1;
+  //   let doc = this.afs.collection('users', ref => ref.where('uid', '==', _id));
+  //   doc.snapshotChanges().subscribe((res: any) => {      
+  //   if (i===1){
+  //     let id = res[0].payload.doc.uid;      
+  //     this.afs.collection('users').doc(id).update({vmid: _value});
+  //     i++;
+  //     return;
+  //   }
+  //   });
+  //  }
 }

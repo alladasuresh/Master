@@ -4,7 +4,7 @@
       <h4 class="mb-32">Add User</h4>
       <form [formGroup]="signUpForm"  (ngSubmit)="submit()">
         
-        <div class="row">
+        
 
         <mat-form-field  appearance="outline">
           <mat-label>First Name</mat-label>
@@ -12,15 +12,16 @@
           <mat-error *ngIf="firstName?.errors?.['required']">
             FirstName is required
           </mat-error>
-        </mat-form-field>
+        </mat-form-field><br>
+
         <mat-form-field appearance="outline">
           <mat-label>Last Name</mat-label>
           <input matInput type="text" value="" placeholder="Enter user's LastName" formControlName="lastName">
-        </mat-form-field>
+        </mat-form-field><br>
 
-        </div>
+        
 
-       <div class="row">
+       
         <mat-form-field  appearance="outline">
           <mat-label>Personal Email</mat-label>
           <input matInput type="email" placeholder="Enter user's personal email" formControlName="email"/>
@@ -30,7 +31,7 @@
           <mat-error *ngIf="email?.errors?.['email']">
             Please enter a valid email address
           </mat-error>
-        </mat-form-field>
+        </mat-form-field><br>
 
         <mat-form-field  appearance="outline">
           <mat-label>User Designation</mat-label>
@@ -45,13 +46,13 @@
             </mat-error>
          </mat-form-field>
 
-       </div>
+       
         
-       <div class="row">
+       
         <mat-form-field  appearance="outline">
             <mat-label>Birth Date (DOB)</mat-label>
             <input matInput type="date" placeholder="Date of Birth" formControlName="dob"/>
-          </mat-form-field>
+          </mat-form-field><br>
         
         <mat-form-field  appearance="outline">
             <mat-label>Joining Date (DOJ)</mat-label>
@@ -60,7 +61,7 @@
               DOJ is required
             </mat-error>
           </mat-form-field>
-       </div>  
+      
     <!--    <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>User ID</mat-label>
             <input matInput type="text" disabled placeholder="User ID" value="SB004V1"/>
