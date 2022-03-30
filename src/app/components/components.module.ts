@@ -32,6 +32,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { VmDetailsComponent } from './vm-details/vm-details.component';
 import { AddVmComponent } from './add-vm/add-vm.component';
 
+//Add changes 
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+//import { CalendarHeaderComponent } from './calendar/calendar-header.component';
+//End
+
 
 @NgModule({
   declarations: [
@@ -59,13 +67,25 @@ import { AddVmComponent } from './add-vm/add-vm.component';
     LoginComponent,
     VmDetailsComponent,
     AddVmComponent,
+    //add changes
+    //CalendarHeaderComponent,   
+    //end
   ],
   imports: [
     CommonModule,
     FeatherModule.pick(allIcons),
     DemoFlexyModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    //Add changes  
+    CalendarModule, 
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+    provide: DateAdapter,
+    useFactory: adapterFactory,  
+}),
+//End
     
   ],
   exports: [
@@ -84,7 +104,11 @@ import { AddVmComponent } from './add-vm/add-vm.component';
     SlideToggleComponent,
     ButtonsComponent,
     ManageUsersComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    CalendarComponent,
+    //add changes
+   //CalendarHeaderComponent,
+    //end
   ]
 })
 export class ComponentsModule { }
