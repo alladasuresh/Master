@@ -76,13 +76,12 @@ export class LoginComponent implements OnInit {
       {this.router.navigate(['/dashboard']); }
       else
       this.router.navigate(['/dashboard']);
-      }       
-      //}
-      )  
-    // .catch(err => {
-    //   this.error="please give valid credentials";
+      })       
+      })  
+     .catch(err => {
+       this.error="please give valid credentials";
      
     //  });
        });
      }
-    }}
+}}

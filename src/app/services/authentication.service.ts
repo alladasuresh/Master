@@ -163,6 +163,11 @@ export class AuthenticationService {
       console.log(this.userpostList)
       return this.userpostList;
     }
+
+
+    passwordReset(email:string){
+     return  this.afAuth.sendPasswordResetEmail(email)
+    }
     
       
   }
