@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card-body">
       <h4 class="mb-32">View / Delete User</h4>
-      <button mat-button class="mb-16 btn btn-info fw-normal" (click)="onEdit()">Edit User</button>
+      
       <form [formGroup]="userService.form">
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
@@ -62,6 +62,8 @@
             <mat-label>Uploaded Photos / Documents</mat-label>             
         </section>
           
+        <button mat-raised-button class="mb-16 btn btn-info" (click)="onEdit()">Update User Details</button>
+        &nbsp;
       <button mat-raised-button right class="me-8 mb-8" color="warn">Delete User</button>
 
       </form>

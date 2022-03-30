@@ -31,7 +31,9 @@ export class ManageUsersComponent implements OnInit {
      datasoc:any;
     //dataSource = this.dataSourceone;
     //user:any;
-  constructor(private _router: Router,public firestore:AngularFirestore,private userService:UserService ) { }
+  constructor(private _router: Router,public firestore:AngularFirestore,private userService:UserService ) {
+    this.userService.editSelectedUser = null;
+   }
 
   ngOnInit(): void {    
     this.getAllUser();

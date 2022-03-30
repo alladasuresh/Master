@@ -40,8 +40,8 @@ export class UserDetailComponent implements OnInit {
   }
 
   onEdit(): void{
-    //console.log("newvalue  "+id);
-    this._router.navigate(['/add-user']);
+    console.log(this.userService.editSelectedUser);
+    //this._router.navigate(['/add-user']);
   }
 
   updateUser(){
