@@ -31,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { VmDetailsComponent } from './vm-details/vm-details.component';
 import { AddVmComponent } from './add-vm/add-vm.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 //Add changes 
 import { FlatpickrModule } from 'angularx-flatpickr';
@@ -67,6 +68,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     VmDetailsComponent,
     AddVmComponent,
+    ResetPasswordComponent,
     //add changes
     //CalendarHeaderComponent,   
     //end

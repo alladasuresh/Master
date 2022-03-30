@@ -72,14 +72,11 @@ export class LoginComponent implements OnInit {
       // else
       // {
         console.log(result.user);
-        if(this.loginForm.value.email =='wabocim123@tonaeto.com')
-      {this.router.navigate(['/dashboard']); }
-      else
-      this.router.navigate(['/dashboard']);
+        
       })       
       })  
      .catch(err => {
-       this.error="please give valid credentials";
+       this.error="Invalid credentials!";
      
     //  });
        });
