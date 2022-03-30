@@ -31,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { VmDetailsComponent } from './vm-details/vm-details.component';
 import { AddVmComponent } from './add-vm/add-vm.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { AddVmComponent } from './add-vm/add-vm.component';
     LoginComponent,
     VmDetailsComponent,
     AddVmComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,

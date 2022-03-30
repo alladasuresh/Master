@@ -29,6 +29,7 @@ import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VmDetailsComponent } from './components/vm-details/vm-details.component';
 import { AddVmComponent } from './components/add-vm/add-vm.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component'
 
 
 
@@ -38,6 +39,13 @@ const routes: Routes = [
     component:LoginComponent,
     children: [
       {path:"", redirectTo:"/login", pathMatch:"full"},
+    ]
+  },
+  {
+    path:"reset-password",
+    component:ResetPasswordComponent,
+    children: [
+      {path:"", redirectTo:"/reset-password", pathMatch:"full"},
     ]
   },
   {
@@ -70,7 +78,8 @@ const routes: Routes = [
       {path:"add-user",component:AddUserComponent},
       {path:"login",component:LoginComponent},
       {path:"vm-details",component:VmDetailsComponent},
-      {path:"add-vm",component:AddVmComponent}
+      {path:"add-vm",component:AddVmComponent},
+      {path:"reset-password",component:ResetPasswordComponent}
     ]
   },
 
