@@ -3,18 +3,24 @@
     <div class="card-body">
       <h4 class="mb-32">View / Delete User</h4>
       
-      <form [formGroup]="userService.form">
+      <form [formGroup]="resetformone" >
+
+        
         
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>First Name</mat-label>
           <input matInput type="text" value="User" placeholder="Enter user's name" formControlName="firstName" >
+        </mat-form-field>
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" value="User" placeholder="Enter user's name" formControlName="lastName" >
         </mat-form-field>
 
         
   
         <mat-form-field class="w-100 fs-16" appearance="outline">
           <mat-label>Personal Email</mat-label>
-          <input matInput type="email" placeholder="Enter user's personal email"  formControlName="email" >
+          <input matInput type="email" placeholder="Enter user's personal email"  formControlName="email" readonly >
         </mat-form-field>
         
         
@@ -27,6 +33,10 @@
             <mat-label>Joining Date (DOJ)</mat-label>
             <input matInput  type="date" placeholder="Date of Joining" formControlName="doj" >
           </mat-form-field>
+          
+          
+
+          
           
         <mat-form-field class="w-100 fs-16" appearance="outline">
             <mat-label>User ID</mat-label>
@@ -62,9 +72,9 @@
             <mat-label>Uploaded Photos / Documents</mat-label>             
         </section>
           
-        <button mat-raised-button class="mb-16 btn btn-info" (click)="onEdit()">Update User Details</button>
+        <button mat-raised-button class="mb-16 btn btn-info" (click)="updateeditUser()">Update User Details</button>
         &nbsp;
-      <button mat-raised-button right class="me-8 mb-8" color="warn">Delete User</button>
+      <button mat-raised-button right class="me-8 mb-8"  (click)="deleteUser()" color="warn">Delete User</button>
 
       </form>
     </div>

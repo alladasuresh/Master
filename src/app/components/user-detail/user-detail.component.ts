@@ -20,22 +20,29 @@ import {
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-  
+  resetformone= new FormGroup({
+    uid:new FormControl(''),  
+    id:new FormControl(''),
+    firstName:new FormControl(''),
+    lastName:new FormControl(''),
+    dob:new FormControl(''),
+    doj:new FormControl(''),
+    email:new FormControl(''),
+    photoURL:new FormControl(''),
+    role:new FormControl(''),
+  });
   checked = true;  
   hide = true;
   selectedUserID = this.userService.editSelectedUser != null ? this.userService.editSelectedUser.uid : 0;
   
   constructor(private _router: Router,public userService:UserService) { }
-  formControls=this.userService.form.controls;
+  //formControls=this.userService.form.controls;
+  formControls=this.resetformone.controls;
 
   ngOnInit(): void {
-    
+    this.populateForm(this.userService.editSelectedUser);   
   }
   
-  
-  
-
-
   onBack(): void {
     this._router.navigate(['/flexy/home']);
   }
@@ -45,7 +52,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   onEdit(): void{
-    console.log(this.userService.editSelectedUser);
+    console.log(this.userService.editSelectedUser.uid);
     //this._router.navigate(['/add-user']);
   }
 
@@ -54,10 +61,17 @@ export class UserDetailComponent implements OnInit {
   }
   
   deleteUser(){
-    this.userService.deleteUser(this.selectedUserID);
+    this.userService.deleteUser(this.selectedUserID);                   
     this._router.navigate(['/manage-users']);
   }
   updateeditUser(){
-    
+    //console.log(this.selectedUserID);
+    //console.log(this.resetformone.value.firstName);
+    this.userService.updateEditUser(this.selectedUserID,this.resetformone.value.firstName,this.resetformone.value.lastName,
+    this.resetformone.value.dob,this.resetformone.value.doj);
+  }
+
+  populateForm(user:any){
+    this.resetformone.setValue(user);
   }
 }

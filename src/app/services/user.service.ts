@@ -92,13 +92,13 @@ export class UserService {
   
   //-- vm related method --
  // ******   Do not remove if condition -- it loops infinite times ********
-   updateEditUser(_id: string, _name: string,_namet:string ) {
+   updateEditUser(_id: string, _fname: string,_lname:string,_dob:string,_doj:string) {
     let i=1;
     let doc = this.afs.collection('users', ref => ref.where('uid', '==', _id));
     doc.snapshotChanges().subscribe((res: any) => {      
     if (i===1){
-      let id = res[0].payload.doc.uid;      
-      this.afs.collection('users').doc(id).update({name: _name,namet:_namet});
+      let id = res[0].payload.doc.id;      
+      this.afs.collection('users').doc(id).update({firstName: _fname, lastName:_lname, dob:_dob, doj:_doj});
       i++;
       return;
     }

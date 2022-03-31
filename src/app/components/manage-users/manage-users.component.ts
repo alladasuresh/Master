@@ -71,7 +71,7 @@ export class ManageUsersComponent implements OnInit {
     this.userService.getAllUsers().subscribe(res=>{
       this.dataSourceone=res;
       this.datasoc =new MatTableDataSource(this.dataSourceone);
-      console.log(this.datasoc.data)
+      
       this.customerArray=this.datasoc.data;
     })
   }  
